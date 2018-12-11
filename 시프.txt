@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+char* Strtok(char* str1,const char* str2);
+int main()
+{
+    char str1[100];
+    char str2[100];
+    char* result;
+    scanf("%s %s",str1,str2);
+    result = Strtok(str1,str2);
+    printf("%s",result);
+    return 0;
+}
+
+
+char* Strtok(char* str1,const char* str2){
+  static char *str11;
+  const char *str22;
+  if (str1 == NULL) {
+    str1 = str11;
+  }
+  else {
+    str11 = str1;
+  }
+  while(*str11){
+    str22=str2;
+    while(*str22){
+        if(*str11==*str22){
+            *str11=NULL;
+            str11++;
+            return str1;
+        }
+        str22++;
+    }
+    str11++;
+  }
+  return str1;
+}
